@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #080c08;
+  font-family: 'Courier New', Courier, monospace;
+  color: #33ff33;
+  overflow: hidden;
+  height: 100%;
+}
+
+/* CRT Screen Effect Container */
+.terminal-window {
+  width: 100vw;
+  height: 100vh;
+  padding: 30px;
+  background: radial-gradient(circle at center, #0e1a10 0%, #040804 100%);
+  text-shadow: 0 0 5px rgba(51, 255, 51, 0.75);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Scanlines overlay */
+.terminal-window::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.45) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Scroll area */
+.history-area {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Prompt Line */
+.input-row {
+  display: flex;
+  align-items: center;
+  z-index: 20;
+}
+
+.prompt-symbol {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #33ff33;
+  font-family: inherit;
+  font-size: 1.1rem;
+  text-shadow: 0 0 5px rgba(51, 255, 51, 0.75);
+  caret-color: #33ff33;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
